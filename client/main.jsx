@@ -4,5 +4,5 @@ import { render } from 'react-dom';
 import Hello from './components/HelloWorld.jsx';
 
 Meteor.startup(() => {
-  render(<Hello />, document.getElementById('hello'));
+  render(<Hello />, document.getElementById('container'));
 });
