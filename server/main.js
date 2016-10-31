@@ -21,7 +21,7 @@ Meteor.startup(() => {
   note.alert = "hzyuxiaohua\nYou have a new message";
   note.topic = "d.netease.mailmaster";
 
-  apnProvider.send(note, token).then((result) => {
-    console.log(result);
-  });
+  // apnProvider.send(note, token).then((result) => {
+  //   console.log(result);
+  // });
 });
