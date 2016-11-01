@@ -19,11 +19,11 @@ export default class Form extends React.Component {
   }
 
   submit() {
-    let msg = 'hello, world.';
+    let text = document.getElementById('msg').value;
+    let msg = text.length > 0 ? text : 'hzyuxiaohua\nYou have a new message';
     let token = '95ecf4ef9169e20b238b6ff692ddb2af54ea4da1cc4a75c86a2b9c60cba90e75';
     Meteor.call('apns.send',
-      { token: '95ecf4ef9169e20b238b6ff692ddb2af54ea4da1cc4a75c86a2b9c60cba90e75',
-        msg: 'hello, world.'},
+      { token: token, msg: msg},
       (err, res) => {
         if (err) {
           alert(err);
@@ -41,7 +41,8 @@ export default class Form extends React.Component {
           type = 'text'
           placeholder = 'input'
           // value = { this.state.value }
-          onChange = { this.textChanged }/>
+          onChange = { this.textChanged }
+          id='msg'/>
         <button onClick = { this.submit }>
           submit
         </button>

@@ -22,13 +22,25 @@ export default class APNS {
       badge:{type: Number}
     }).validate({token, msg, badge});
 
-    console.log('T: ' + token + ', M: ' + msg + ' B: ' + badge);
-    var note = new this.apn.Notification();
-    note.badge = 1;
-    note.sound = "default";
-    note.alert = "hzyuxiaohua\nYou have a new message";
-    note.topic = "d.netease.mailmaster";
-    this.provider.send(note, token).then((result) => {
+    // console.log('T: ' + token + ', M: ' + msg + ' B: ' + badge);
+    var noti = new this.apn.Notification();
+    noti.badge = badge;
+    noti.sound = "default";
+    noti.title = 'apn-npm push';
+    noti.body = msg;
+    noti.mutableContent = true;
+    noti.topic = "d.netease.mailmaster";
+    noti.category='readAndDeletePushIdentifier';
+    noti.payload = {
+      p: {
+        fid: 1,
+        m: '43:1tbiKxsUPFQHC7KQiAAAsq',
+        type: 'mail',
+        u: 'yxhtest@163.com'
+      }
+    }
+    console.log(noti);
+    this.provider.send(noti, token).then((result) => {
       console.log(result);
     });
   }
