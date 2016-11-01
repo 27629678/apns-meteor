@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 
+import Clock from './clock.jsx';
+
+class User {
+  constructor(first, last) {
+    this.first = first;
+    this.last = last;
+  }
+}
+
 export default class HelloWorld extends Component {
   constructor () {
     super()
@@ -11,10 +20,15 @@ export default class HelloWorld extends Component {
     console.log(this.isProduction);
   }
 
+  formatUser(user) {
+    return user.last + ' ' + user.first;
+  }
+
   render() {
+    var user = new User('xiaohua', 'yu');
     return (
       <div>
-        <h1>Hello, World.</h1>
+        <Clock />
         <p>token:</p>
         <input type='textinput'></input>
         <p>isProduction:</p>
