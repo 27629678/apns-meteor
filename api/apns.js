@@ -15,7 +15,7 @@ export default class APNS {
     console.log('APNS.init, apn: ' + (typeof this.apn));
   }
 
-  send(token, msg, badge) {
+  send(bundle_id, token, msg, badge) {
     new SimpleSchema ({
       token: {type: String},
       msg: {type: String},
@@ -29,7 +29,7 @@ export default class APNS {
     noti.title = 'apn-npm push';
     noti.body = msg;
     noti.mutableContent = true;
-    noti.topic = "d.netease.mailmaster";
+    noti.topic = bundle_id;
     noti.category='readAndDeletePushIdentifier';
     noti.payload = {
       p: {
@@ -40,8 +40,17 @@ export default class APNS {
       }
     }
     console.log(noti);
-    this.provider.send(noti, token).then((result) => {
+
+    let promise = this.provider.send(noti, token);
+    promise.then((result) => {
       console.log(result);
-    });
+    })
+    // var resp = Meteor.wrapAsync(this.provider.send(noti, token).then);
+    // resp(function (error, result) {
+    //   console.log(result);
+    // });
+    // this.provider.send(noti, token).then((result) => {
+    //   console.log(result);
+    // });
   }
 }

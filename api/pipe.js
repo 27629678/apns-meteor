@@ -5,8 +5,8 @@ if (Meteor.isServer) {
   const provider = new APNS();
 
   Meteor.methods({
-    'apns.send'({token, msg}) {
-      provider.send(token, msg, 2);
+    'apns.send'({bundle_id, token, msg}) {
+      provider.send(bundle_id, token, msg, 2);
     }
   });
 }
