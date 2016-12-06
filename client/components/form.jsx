@@ -20,7 +20,15 @@ export default class Form extends React.Component {
 
   submit() {
     let text = document.getElementById('message').value;
+    if (text.length == 0) {
+      text = document.getElementById('message').placeholder;
+    }
+
     let bundle_id = document.getElementById('bundle_id').value;
+    if (bundle_id.length == 0) {
+      bundle_id = document.getElementById('bundle_id').placeholder;
+    }
+
     let token = document.getElementById('token').value;
     let msg = text.length > 0 ? text : 'hzyuxiaohua\nYou have a new message';
     // let token = '4c99a6a919b88f6aabb316c39ec29f5b9ac4c1ecf1d044785e80e6f8f92af719';
@@ -43,14 +51,14 @@ export default class Form extends React.Component {
         <label>Bundle Id:</label>
         <input
           type = 'text'
-          placeholder = 'input bundle id ...'
+          placeholder = 'd.netease.diagnosis'
           onChange = { this.textChanged }
           id = 'bundle_id'/>
         <br></br>
         <label>message:</label>
         <input
           type = 'text'
-          placeholder = 'input the message ...'
+          placeholder = 'enable diagnosis mode'
           onChange = { this.textChanged }
           id='message'/>
         <br></br>
