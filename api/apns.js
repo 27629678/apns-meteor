@@ -47,19 +47,11 @@ export default class APNS {
         u: 'yxhtest@163.com'
       }
     }
-    console.log(noti);
+    console.log('sending: \n\tbundle_id' + noti.topic + '; \n\ttoken:' + token);
 
     let promise = this.provider.send(noti, token);
     promise.then((result) => {
-      console.log(result);
+      console.log('over.');
     })
-
-    // var resp = Meteor.wrapAsync(this.provider.send(noti, token).then);
-    // resp(function (error, result) {
-    //   console.log(result);
-    // });
-    // this.provider.send(noti, token).then((result) => {
-    //   console.log(result);
-    // });
   }
 }
